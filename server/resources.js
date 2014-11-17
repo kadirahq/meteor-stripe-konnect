@@ -1,0 +1,20 @@
+StripeResources = {
+  account: ['retrieve'],
+  balance: ['retrieve', 'listTransactions', 'retrieveTransaction'],
+  charges: ['create', 'list', 'retrieve', 'update', 'setMetadata', 'getMetadata', 'capture', 'refund', 'updateDispute', 'closeDispute', 'createRefund', 'listRefunds', 'retrieveRefund', 'updateRefund'],
+  coupons: ['create', 'list', 'update', 'retrieve', 'del'],
+  customers: ['create', 'list', 'retrieve', 'update', 'del', 'setMetadata', 'getMetadata', '_legacyUpdateSubscription','_newstyleUpdateSubscription','_legacyCancelSubscription','_newstyleCancelSubscription','createSubscription','listSubscriptions','retrieveSubscription', 'updateSubscription', 'cancelSubscription', 'createCard','listCards','retrieveCard','updateCard','deleteCard','deleteDiscount','deleteSubscriptionDiscount'],
+  events: ['list', 'retrieve'],
+  invoices: ['create', 'list', 'retrieve', 'update', 'retrieveLines','pay','retrieveUpcoming'],
+  invoiceItems: ['create', 'list', 'retrieve', 'update', 'del', 'setMetadata', 'getMetadata'],
+  plans: ['create', 'list', 'retrieve', 'update', 'del'],
+  recipientCards: ['create', 'list', 'retrieve', 'update', 'del'],
+  recipients: ['create', 'list', 'retrieve', 'update', 'del', 'setMetadata', 'getMetadata', 'createCard','listCards','retrieveCard','updateCard','deleteCard'],
+  tokens: ['create', 'retrieve'],
+  transfers: ['create', 'list', 'retrieve', 'update', 'setMetadata', 'getMetadata', 'cancel', 'listTransactions'],
+  applicationFees: ['list', 'retrieve', 'refund', 'createRefund', 'listRefunds', 'retrieveRefund', 'updateRefund'],
+  customerCards: ['create', 'list', 'retrieve', 'update', 'del'],
+  customerSubscriptions: ['create', 'list', 'retrieve', 'update', 'del', 'deleteDiscount'],
+  chargeRefunds: ['create', 'list', 'retrieve', 'update'],
+  applicationFeeRefunds: ['create', 'list', 'retrieve', 'update']
+}
