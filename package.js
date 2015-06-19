@@ -1,6 +1,7 @@
 Package.describe({
   summary: "Stripe payment gateway integration",
-  version: "1.0.0"
+  version: "1.0.0",
+  name: "meteorhacks:stripe"
 });
 
 Npm.depends({
@@ -13,9 +14,8 @@ Package.onUse(function(api) {
   api.use('underscore', 'server');
   api.use('templating', 'client');
   api.use(['cosmos:browserify@0.2.0'], 'client');
-  api.addFiles(['client.browserify.js', 'client/includes.html'], 'client');
+  api.addFiles('client.browserify.js', 'client');
   api.addFiles('client/stripe.js', 'client');
-  api.addFiles('client/includes.html', 'client');
   api.addFiles('server/resources.js', 'server');
   api.addFiles('server/stripe.js', 'server');
   api.export('Stripe', 'server');
