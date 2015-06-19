@@ -19,6 +19,7 @@ Package.onUse(function(api) {
   api.addFiles('server/resources.js', 'server');
   api.addFiles('server/stripe.js', 'server');
   api.export('Stripe', 'server');
+  api.export('stripeReady', 'client');
 });
 
 Package.onTest(function(api) {

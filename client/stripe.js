@@ -1,3 +1,14 @@
+stripeReady = {};
+var onReady = [];
+var loaded = false;
+stripeReady = function(cb) {
+  if(loaded) {
+    cb();
+  } else {
+    onReady.push(cb);
+  }
+};
+
 loadScript('https://js.stripe.com/v2/', function (err) {
   if (!err) {
     loadScript('https://checkout.stripe.com/checkout.js', function (err) {
@@ -25,5 +36,14 @@ function loadStripeAPI() {
         image: config.appLogo,
       }));
     };
+
+    stripeReady = function(cb) {
+      cb();
+    };
+
+    _.each(onReady, function(fn) {
+      fn();
+    });
   });
+  loaded = true;
 }
