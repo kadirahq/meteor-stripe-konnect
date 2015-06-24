@@ -1,13 +1,9 @@
-Stripe for Meteor
-=================
+# Stripe for Meteor
 
-* work in progress *
-
-Features
---------
+## Features
 
  - All Stripe methods can be used synchronously (uses fibers)
- - Load client side resource asynchronously
+ - Load client side resources asynchronously
 
 ## Usage
 
@@ -22,7 +18,7 @@ Stripe.configure({
 });
 ~~~
 
-After that, you can use any Stripe Node API in sync manner inside both methods and publications.
+After that, you can use any Stripe [NodeJS](https://stripe.com/docs/api/node) API in sync manner inside both methods and publications.
 
 ### Stripe Checkout
 
@@ -44,6 +40,3 @@ StripeUtils.ready(function() {
   handle.open();
 });
 ~~~
-
-
-
