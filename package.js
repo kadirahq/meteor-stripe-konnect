@@ -19,12 +19,12 @@ Package.onUse(function(api) {
   api.addFiles('server/resources.js', 'server');
   api.addFiles('server/stripe.js', 'server');
   api.export('Stripe', 'server');
-  api.export('stripeReady', 'client');
+  api.export('StripeUtils', 'client');
 });
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('stripe');
+  api.use('meteorhacks:stripe');
   api.addFiles('tests/client.js', 'client');
   api.addFiles('tests/server.js', 'server');
 });

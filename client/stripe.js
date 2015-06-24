@@ -1,11 +1,13 @@
-stripeReady = {};
-var onReady = [];
-var loaded = false;
-stripeReady = function(cb) {
-  if(loaded) {
+StripeUtils = {
+  _onReadyCallbacks: [],
+  _loaded: false
+};
+
+StripeUtils.ready = function(cb) {
+  if(this._loaded) {
     cb();
   } else {
-    onReady.push(cb);
+    this._onReadyCallbacks.push(cb);
   }
 };
 
@@ -15,35 +17,29 @@ loadScript('https://js.stripe.com/v2/', function (err) {
       if (!err) {
         loadStripeAPI();
       } else {
-        throw new Meteor.Error("Stripe resources loading failed."); 
+        throw new Error("Stripe api v2 loading failed."); 
       }
     });
   } else {
-    throw new Meteor.Error("Stripe resources loading failed.");
+    throw new Error("Stripe checkout loading failed.");
   }
 });
 
 function loadStripeAPI() {
-  Meteor.startup(function () {
-    Stripe = window.Stripe;
-    StripeCheckout = window.StripeCheckout;
-    var config = __meteor_runtime_config__.stripe;
+  Stripe = window.Stripe;
+  StripeCheckout = window.StripeCheckout;
+  var config = __meteor_runtime_config__.stripe;
 
-    Stripe.getCheckoutHandler = function (options) {
-      return StripeCheckout.configure(_.defaults(_.clone(options), {
-        name: config.appName,
-        key: config.publishableKey,
-        image: config.appLogo,
-      }));
-    };
+  Stripe.getCheckoutHandler = function (options) {
+    return StripeCheckout.configure(_.defaults(_.clone(options), {
+      name: config.appName,
+      key: config.publishableKey,
+      image: config.appLogo,
+    }));
+  };
 
-    stripeReady = function(cb) {
-      cb();
-    };
-
-    _.each(onReady, function(fn) {
-      fn();
-    });
+  _.each(StripeUtils._onReadyCallbacks, function(fn) {
+    fn();
   });
-  loaded = true;
+  StripeUtils._loaded = true;
 }
