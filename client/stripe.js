@@ -11,19 +11,21 @@ StripeUtils.ready = function(cb) {
   }
 };
 
-loadScript('https://js.stripe.com/v2/', function (err) {
-  if (!err) {
-    loadScript('https://checkout.stripe.com/checkout.js', function (err) {
-      if (!err) {
-        loadStripeAPI();
-      } else {
-        throw new Error("Stripe api v2 loading failed."); 
-      }
-    });
-  } else {
-    throw new Error("Stripe checkout loading failed.");
-  }
-});
+function startLoading() {
+  loadScript('https://js.stripe.com/v2/', function (err) {
+    if (!err) {
+      loadScript('https://checkout.stripe.com/checkout.js', function (err) {
+        if (!err) {
+          loadStripeAPI();
+        } else {
+          throw new Error("Stripe api v2 loading failed."); 
+        }
+      });
+    } else {
+      throw new Error("Stripe checkout loading failed.");
+    }
+  });
+}
 
 function loadStripeAPI() {
   Stripe = window.Stripe;
@@ -43,3 +45,8 @@ function loadStripeAPI() {
   });
   StripeUtils._loaded = true;
 }
+
+// wait until DOM is ready
+Meteor.startup(function() {
+  startLoading();
+});
