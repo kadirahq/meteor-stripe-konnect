@@ -1,0 +1,1 @@
+loadScript = require('load-script');
