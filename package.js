@@ -1,6 +1,6 @@
 Package.describe({
   summary: "Stripe payment gateway integration",
-  version: "1.0.0",
+  version: "2.0.0",
   name: "meteorhacks:stripe"
 });
 
