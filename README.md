@@ -1,19 +1,19 @@
-# Stripe for Meteor Apps
+## StripeKonnect - Stripe for Meteor Apps
 
-## Installation
+### Installation
 
 ```
 meteor add kadira:stripe-konnect
 ```
 
-## Features
+### Features
 
  - All Stripe methods can be used synchronously (uses fibers)
  - Load StripeCheckout in client side asynchronosly
  - Automatic client side configurations
  - Ability to use multiple Stripe accounts at once
 
-## Usage
+### Usage
 
 First, initialize Stripe configurations on the server side:
 
@@ -32,7 +32,7 @@ stripe.configure({
 
 After that, you can use any Stripe [NodeJS](https://stripe.com/docs/api/node) API in sync manner inside both methods and publications using the `stripe` object
 
-### Stripe Checkout
+#### Stripe Checkout
 
 You can easily get a Stripe Checkout handle like in the client:
 
@@ -41,6 +41,7 @@ You can easily get a Stripe Checkout handle like in the client:
 // multiple stripe accounts at the sametime.
 var namespace = "production";
 var stripe = new StripeKonnect(namespace);
+
 // Wait until Stripe JS apis are loaded
 stripe.ready(function() {
   var handle = stripe.getCheckoutHandler({

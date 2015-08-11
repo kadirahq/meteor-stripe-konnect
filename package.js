@@ -1,12 +1,12 @@
 Package.describe({
   summary: "Stripe for Meteor Apps",
-  version: "1.0.0",
-  name: "kadira:stripe-konnect"
+  version: "3.0.0",
+  name: "kadira:stripe-konnect",
+  git: 'https://github.com/kadirahq/meteor-stripe-konnect.git'
 });
 
 Npm.depends({
-  'stripe': '2.8.0',
-  'load-script': '1.0.0'
+  'stripe': '2.8.0'
 });
 
 Package.onUse(function(api) {
