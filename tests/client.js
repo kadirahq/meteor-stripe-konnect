@@ -1,19 +1,21 @@
 Tinytest.addAsync(
-'StripeUtils.ready to wait loading', 
+'StripeKonnect - Wait in client side and initialize the api', 
 function (test, done) {
-  StripeUtils.ready(function() {
-    test.equal(typeof Stripe, 'function');
+  var stripe = new StripeKonnect('test');
+  stripe.ready(function() {
+    test.equal(typeof window.Stripe, 'function');
+    var handle = stripe.getCheckoutHandler({});
+
+    test.equal(typeof handle.open, 'function');
     done();
   });
 });
 
 Tinytest.addAsync(
-'StripeUtils.ready calling multiple times in nested manner', 
+'StripeKonnect - calling ready multiple times', 
 function (test, done) {
-  StripeUtils.ready(function() {
-    StripeUtils.ready(function() {
-      test.equal(typeof Stripe, 'function');
-      done();
-    });
+  var stripe = new StripeKonnect('test');
+  stripe.ready(function() {
+    stripe.ready(done);
   });
 });

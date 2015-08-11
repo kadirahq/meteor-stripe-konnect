@@ -1,7 +1,7 @@
 Package.describe({
-  summary: "Stripe payment gateway integration",
-  version: "2.0.1",
-  name: "meteorhacks:stripe"
+  summary: "Stripe for Meteor Apps",
+  version: "1.0.0",
+  name: "kadira:stripe-konnect"
 });
 
 Npm.depends({
@@ -10,21 +10,21 @@ Npm.depends({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('METEOR@0.9.1.1');
+  api.versionsFrom('METEOR@1.0');
   api.use('underscore', 'server');
-  api.use('templating', 'client');
-  api.use(['cosmos:browserify@0.2.0'], 'client');
-  api.addFiles('client.browserify.js', 'client');
+  // to load scripts dynamically
+  api.use('kadira:dochead@1.0.0', 'client');
+
   api.addFiles('client/stripe.js', 'client');
   api.addFiles('server/resources.js', 'server');
   api.addFiles('server/stripe.js', 'server');
-  api.export('Stripe', 'server');
-  api.export('StripeUtils', 'client');
+  api.export('StripeKonnect', ['server', 'client']);
 });
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('meteorhacks:stripe');
+  api.use('kadira:stripe-konnect');
+  api.addFiles('tests/init.js', 'server');
   api.addFiles('tests/client.js', 'client');
   api.addFiles('tests/server.js', 'server');
 });

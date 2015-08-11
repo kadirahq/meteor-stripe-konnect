@@ -1,34 +1,41 @@
-var stripe = Npm.require('stripe');
+var StripeNode = Npm.require('stripe');
 var util = Npm.require('util');
-__meteor_runtime_config__.stripe = {};
+var stripeClientConfig = __meteor_runtime_config__.stripe = {};
 var Future = Npm.require('fibers/future');
 
-Stripe = {
-  api: null,
-  options: null,
+StripeKonnect = function(namespace) {
+  this._namespace = namespace;
+  this.api = null;
+  this.options = null;
 };
 
-Stripe.configure = function(options) {
-  this.api = new stripe();
+StripeKonnect.prototype.configure = function(options) {
+  this.api = new StripeNode();
   this.api.setApiKey(options.apiKey);
   this.options = options;
+
   this._setOnClient('appName', options.appName);
   this._setOnClient('appLogo', options.appLogo);
   this._setOnClient('publishableKey', options.publishableKey);
   this._syncWrapMethods();
 };
 
-Stripe._setOnClient = function(key, value) {
-  __meteor_runtime_config__.stripe[key] = value;
+StripeKonnect.prototype._setOnClient = function(key, value) {
+  if(!stripeClientConfig[this._namespace]) {
+    stripeClientConfig[this._namespace] = {};
+  }
+  stripeClientConfig[this._namespace][key] = value;
 };
 
-Stripe._syncWrapMethods = function () {
+StripeKonnect.prototype._syncWrapMethods = function () {
+  var self = this;
+
   _.each(StripeResources, function (methods, resource) {
-    Stripe[resource] = {};
+    self[resource] = {};
     _.each(methods, function (name) {
-      var context = Stripe.api[resource];
-      var method = Stripe.api[resource][name];
-      Stripe[resource][name] = function() {
+      var context = self.api[resource];
+      var method = self.api[resource][name];
+      self[resource][name] = function() {
         var args = _.toArray(arguments);
         var f = new Future();
 
