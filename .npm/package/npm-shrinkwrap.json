@@ -2,9 +2,13 @@
   "dependencies": {
     "stripe": {
       "version": "2.8.0",
+      "resolved": "https://registry.npmjs.org/stripe/-/stripe-2.8.0.tgz",
+      "from": "stripe@2.8.0",
       "dependencies": {
         "when": {
-          "version": "3.1.0"
+          "version": "3.1.0",
+          "resolved": "https://registry.npmjs.org/when/-/when-3.1.0.tgz",
+          "from": "when@3.1.0"
         }
       }
     }

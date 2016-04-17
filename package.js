@@ -11,9 +11,9 @@ Npm.depends({
 
 Package.onUse(function(api) {
   api.versionsFrom('METEOR@1.0');
-  api.use('underscore', 'server');
+  api.use('underscore', ['server', 'client']);
   // to load scripts dynamically
-  api.use('kadira:dochead@1.0.0', 'client');
+  api.use('kadira:dochead@1.5.0', 'client');
 
   api.addFiles('client/stripe.js', 'client');
   api.addFiles('server/resources.js', 'server');
